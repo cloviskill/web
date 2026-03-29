@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Kultiv | Le Sobeuhlier</title>
+    <meta
+      name="description"
+      content="Shop Kultiv : toutes les graines et tout le materiel dans un catalogue web propre, premium et relie au panier du site."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Shop Kultiv | Le Sobeuhlier" />
+    <meta
+      property="og:description"
+      content="Graines, materiel, pages produit detaillees et panier web partage."
+    />
+    <meta property="og:image" content="logo.png" />
+    <link rel="icon" href="logo.png" />
+    <link rel="stylesheet" href="shop-styles.css?v=20260329-shop-7" />
+    <style>
+      .site-header .shell {
+        width: min(1240px, calc(100% - 40px));
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(17, 19, 23, 0.06);
+        box-shadow: 0 10px 30px rgba(17, 19, 23, 0.05);
+      }
+
+      .header-main {
+        background: transparent;
+        color: var(--text);
+      }
+
+      .header-row {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        min-height: 62px;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 0 12px;
+        border: 1px solid rgba(17, 19, 23, 0.08);
+        border-radius: 999px;
+        background: rgba(17, 19, 23, 0.03);
+        color: var(--text);
+        font-size: 0.84rem;
+        font-weight: 800;
+      }
+
+      .menu-toggle svg {
+        width: 18px;
+        height: 18px;
+        flex: none;
+      }
+
+      .header-row .brand {
+        display: inline-flex;
+        align-items: center;
+        min-width: 0;
+        padding: 2px 0;
+        gap: 0;
+      }
+
+      .header-row .brand img {
+        width: clamp(92px, 10vw, 136px);
+        max-width: min(28vw, 136px);
+        height: auto;
+        object-fit: contain;
+      }
+
+      .header-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 4px;
+        border-radius: 999px;
+        background: rgba(17, 19, 23, 0.03);
+        border: 1px solid rgba(17, 19, 23, 0.06);
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .header-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .header-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 34px;
+        padding: 0 12px;
+        border-radius: 999px;
+        white-space: nowrap;
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 800;
+        border: 1px solid transparent;
+      }
+
+      .header-link:hover {
+        color: var(--text);
+        background: rgba(17, 19, 23, 0.04);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .header-action,
+      .header-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      .header-action {
+        color: var(--text);
+        background: rgba(17, 19, 23, 0.04);
+        border-color: rgba(17, 19, 23, 0.04);
+      }
+
+      .header-cta {
+        background: var(--text);
+        color: #ffffff;
+        box-shadow: 0 18px 40px rgba(17, 19, 23, 0.15);
+      }
+
+      .dialog-shell {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .dialog-card {
+        width: min(520px, 100%);
+        max-height: min(88svh, 920px);
+        overflow: auto;
+        padding: 26px;
+        border-radius: 34px;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(17, 19, 23, 0.08);
+        box-shadow: 0 32px 80px rgba(17, 19, 23, 0.18);
+      }
+
+      .dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .dialog-copy {
+        min-width: 0;
+      }
+
+      .dialog-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(17, 19, 23, 0.05);
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .dialog-copy h3 {
+        margin: 14px 0 8px;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.08em;
+      }
+
+      .dialog-copy p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .auth-form {
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field label {
+        font-size: 0.76rem;
+        font-weight: 800;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .field input {
+        width: 100%;
+        min-height: 54px;
+        padding: 0 18px;
+        border: 1px solid rgba(17, 19, 23, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--text);
+        font-size: 1rem;
+      }
+
+      .terms-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 20px;
+        background: rgba(17, 19, 23, 0.03);
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+
+      .terms-check input {
+        margin-top: 3px;
+      }
+
+      .terms-check a,
+      .link-button {
+        color: #1967ff;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+
+      .link-button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        font: inherit;
+        font-weight: 800;
+      }
+
+      .auth-message {
+        min-height: 22px;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .auth-message[data-tone="error"] {
+        color: #b62828;
+      }
+
+      .auth-message[data-tone="success"] {
+        color: #0a8b58;
+      }
+
+      .auth-google {
+        width: 100%;
+        margin-top: 12px;
+      }
+
+      .auth-switch-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .orders-loading {
+        display: grid;
+        gap: 16px;
+        place-items: center;
+        padding: 34px;
+        border-radius: 28px;
+        background: rgba(17, 19, 23, 0.03);
+        text-align: center;
+      }
+
+      .orders-loading p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 3px solid rgba(17, 19, 23, 0.08);
+        border-top-color: var(--text);
+        animation: spin 0.9s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .amount-value {
+        font-size: 1rem;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+
+      .checkout-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      @media (max-width: 860px) {
+        .header-row {
+          grid-template-columns: 1fr auto;
+          gap: 14px;
+          min-height: 74px;
+        }
+
+        .header-nav {
+          grid-column: 1 / -1;
+          justify-content: flex-start;
+          padding-bottom: 12px;
+        }
+
+        .header-left {
+          min-width: 0;
+        }
+
+        .header-actions {
+          justify-self: end;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .site-header .shell {
+          width: calc(100% - 22px);
+        }
+
+        .menu-toggle span {
+          display: none;
+        }
+
+        .header-action,
+        .header-cta {
+          min-height: 46px;
+          padding: 0 16px;
+          font-size: 0.88rem;
+        }
+
+        .dialog-shell {
+          padding: 16px;
+        }
+
+        .dialog-card {
+          padding: 22px;
+          border-radius: 28px;
+        }
+
+        .checkout-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-main">
+        <div class="shell header-row">
+          <div class="header-left">
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Ouvrir le menu">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+              </svg>
+              <span>Menu</span>
+            </button>
+
+            <a class="brand" href="index3.html" aria-label="Kultiv">
+              <img src="logopage.png" alt="Kultiv" />
+            </a>
+          </div>
+
+          <nav class="header-nav" aria-label="Navigation principale">
+            <a class="header-link" href="shop.html#graines">Graine</a>
+            <a class="header-link" href="shop.html#materiel">Matériel</a>
+            <a class="header-link" href="formation.html">Formation</a>
+            <a class="header-link" href="index3.html#application">Application</a>
+            <a class="header-link" href="index3.html#outils">Outils</a>
+          </nav>
+
+          <div class="header-actions">
+            <a class="header-action" href="shop.html">Shop</a>
+            <button class="header-cta" id="header-auth-button" type="button">Se connecter</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="layer-backdrop" id="menu-backdrop" hidden></div>
+    <aside class="side-menu" id="side-menu" aria-hidden="true" hidden>
+      <div class="side-menu-panel">
+        <div class="side-menu-head">
+          <strong>Navigation</strong>
+          <button class="side-close" id="side-close" type="button" aria-label="Fermer le menu">×</button>
+        </div>
+
+        <div class="menu-stack">
+          <a class="menu-item" href="index3.html">
+            <span class="menu-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1v-7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span class="menu-item-copy">
+              <strong>Accueil</strong>
+              <small>Retour au site principal.</small>
+            </span>
+            <span class="menu-item-badge">Web</span>
+          </a>
+
+          <a class="menu-item" href="#graines" data-menu-link>
+            <span class="menu-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 4c3.8 1.7 6 4.6 6 8.3A6 6 0 0 1 12 18a6 6 0 0 1-6-5.7C6 8.6 8.2 5.7 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M12 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="menu-item-copy">
+              <strong>Graines</strong>
+              <small>Voir toute la sélection.</small>
+            </span>
+            <span class="menu-item-badge">Shop</span>
+          </a>
+
+          <a class="menu-item" href="#materiel" data-menu-link>
+            <span class="menu-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 7h13l-1.4 6.7a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.5L5.4 5H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="10" cy="19" r="1.4" fill="currentColor" />
+                <circle cx="17" cy="19" r="1.4" fill="currentColor" />
+              </svg>
+            </span>
+            <span class="menu-item-copy">
+              <strong>Matériel</strong>
+              <small>Explorer les équipements.</small>
+            </span>
+            <span class="menu-item-badge">Gear</span>
+          </a>
+
+          <a class="menu-item" href="formation.html">
+            <span class="menu-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7.5 12 4l8 3.5L12 11 4 7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M8 10.5v4c0 1.7 1.8 3 4 3s4-1.3 4-3v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span class="menu-item-copy">
+              <strong>Formations</strong>
+              <small>Retour vers la présentation.</small>
+            </span>
+            <span class="menu-item-badge">10+</span>
+          </a>
+
+          <a class="menu-item" href="index3.html#application">
+            <span class="menu-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="7" y="3" width="10" height="18" rx="2.6" stroke="currentColor" stroke-width="1.8" />
+                <path d="M10.5 17.5h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="menu-item-copy">
+              <strong>Application</strong>
+              <small>Ouvrir l’univers mobile.</small>
+            </span>
+            <span class="menu-item-badge">App</span>
+          </a>
+
+          <a class="menu-item" href="index.html">
+            <span class="menu-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="menu-item-copy">
+              <strong>Ouvrir l’app</strong>
+              <small>Version mobile complète.</small>
+            </span>
+            <span class="menu-item-badge">Live</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="layer-backdrop" id="cart-backdrop" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true">
+      <div class="cart-panel">
+        <div class="cart-head">
+          <div>
+            <span class="eyebrow">Panier</span>
+            <h3>Panier web</h3>
+          </div>
+          <button class="side-close" id="cart-close" type="button" aria-label="Fermer le panier">×</button>
+        </div>
+
+        <div class="feedback cart-feedback" id="cart-feedback" data-cart-feedback></div>
+        <div class="cart-items" id="cart-items"></div>
+
+        <div class="cart-footer">
+          <div class="cart-summary-line">
+            <span>Sous-total</span>
+            <strong id="cart-subtotal">0,00 EUR</strong>
+          </div>
+          <div class="cart-summary-line total">
+            <span>Total</span>
+            <strong id="cart-total">0,00 EUR</strong>
+          </div>
+          <button class="header-cta cart-checkout" id="cart-checkout" type="button">Payer</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="layer-backdrop" id="dialog-backdrop" hidden></div>
+
+    <div class="dialog-shell" id="auth-dialog" hidden>
+      <div class="dialog-card">
+        <div class="dialog-head">
+          <div class="dialog-copy">
+            <span class="dialog-eyebrow">Compte</span>
+            <h3 id="auth-title">Connexion</h3>
+            <p id="auth-copy">Entre ton mail et ton mot de passe pour accéder à ton espace.</p>
+          </div>
+          <button class="side-close" type="button" data-close-dialog aria-label="Fermer">×</button>
+        </div>
+
+        <form class="auth-form" id="auth-form">
+          <div class="field">
+            <label for="auth-email">Mail</label>
+            <input id="auth-email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="auth-password">Mot de passe</label>
+            <input id="auth-password" type="password" autocomplete="current-password" required />
+          </div>
+
+          <label class="terms-check" id="auth-terms-wrap" hidden>
+            <input id="auth-terms-checkbox" type="checkbox" />
+            <span>J’accepte les <a href="conditions.html" target="_blank" rel="noreferrer">conditions générales</a>.</span>
+          </label>
+
+          <div class="auth-message" id="auth-message"></div>
+          <button class="header-cta" id="auth-submit" type="submit">Se connecter</button>
+        </form>
+
+        <button class="button-ghost auth-google" id="google-signin" type="button">Connexion Google</button>
+
+        <div class="auth-switch-row">
+          <span id="auth-switch-copy">Vous n'avez pas de compte ?</span>
+          <button class="link-button" id="auth-switch" type="button">Créer ici</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-shell" id="checkout-dialog" hidden>
+      <div class="dialog-card">
+        <div class="dialog-head">
+          <div class="dialog-copy">
+            <span class="dialog-eyebrow">Livraison</span>
+            <h3>Adresse de livraison</h3>
+            <p>Entre les informations de livraison avant le paiement Revolut.</p>
+          </div>
+          <button class="side-close" type="button" data-close-dialog aria-label="Fermer">×</button>
+        </div>
+
+        <form class="auth-form" id="checkout-form">
+          <div class="field">
+            <label for="checkout-address">Adresse</label>
+            <input id="checkout-address" name="address" type="text" required />
+          </div>
+
+          <div class="checkout-grid">
+            <div class="field">
+              <label for="checkout-postal">Code postal</label>
+              <input id="checkout-postal" name="postalCode" type="text" inputmode="numeric" required />
+            </div>
+            <div class="field">
+              <label for="checkout-city">Ville</label>
+              <input id="checkout-city" name="city" type="text" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="checkout-country">Pays</label>
+            <input id="checkout-country" name="country" type="text" required />
+          </div>
+
+          <div class="auth-message" id="checkout-message"></div>
+          <button class="header-cta" id="checkout-submit" type="submit">Valider l'adresse</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="dialog-shell" id="checkout-loading-dialog" hidden>
+      <div class="dialog-card">
+        <div class="orders-loading">
+          <div class="loader" aria-hidden="true"></div>
+          <p id="checkout-loading-copy">Preparation du paiement…</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-shell" id="checkout-amount-dialog" hidden>
+      <div class="dialog-card">
+        <div class="dialog-head">
+          <div class="dialog-copy">
+            <span class="dialog-eyebrow">Montant</span>
+            <h3>Montant a regler</h3>
+            <p>Copie le montant puis sors la carte pour ouvrir Revolut.</p>
+          </div>
+          <button class="side-close" type="button" data-close-dialog aria-label="Fermer">×</button>
+        </div>
+
+        <div class="amount-value" id="checkout-amount-value">0,00 EUR</div>
+        <div class="button-row" style="margin-top: 20px;">
+          <button class="button-ghost" id="checkout-copy-amount" type="button">Copier</button>
+          <button class="button" id="checkout-pay-now" type="button">Sortir la carte</button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="shop-section" id="graines">
+        <div class="shell">
+          <div class="section-head">
+            <h1>Toute la selection</h1>
+          </div>
+
+          <div class="shop-grid" id="seed-grid"></div>
+        </div>
+      </section>
+
+      <section class="shop-section" id="materiel">
+        <div class="shell">
+          <div class="section-head">
+            <h2>Materiel</h2>
+          </div>
+
+          <div class="shop-grid" id="gear-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Pied de page">
+      <div class="shell">
+        <div class="site-footer-shell">
+          <div class="site-footer-brand">
+            <small>Le Sobeuhlier</small>
+            <strong>Kultiv, shop et app dans le meme univers.</strong>
+            <p>Un espace clair pour explorer le catalogue, suivre les outils et ouvrir l'app mobile sans changer d'ambiance.</p>
+            <div class="site-footer-chips">
+              <span>Shop web</span>
+              <span>Application</span>
+            </div>
+          </div>
+
+          <div class="site-footer-column">
+            <small>Explorer</small>
+            <div class="site-footer-links">
+              <a href="index3.html">Accueil</a>
+              <a href="shop.html">Shop</a>
+              <a href="index.html">Ouvrir l'app</a>
+            </div>
+          </div>
+
+          <div class="site-footer-column">
+            <small>Légal & contact</small>
+            <div class="site-footer-contact">
+              <a href="conditions.html" target="_blank" rel="noreferrer">Mentions légales & CGV</a>
+              <a href="cookie.html" target="_blank" rel="noreferrer">Assistant IA problèmes</a>
+            </div>
+          </div>
+
+          <div class="site-footer-note">
+            <span>Responsable de publication : Oscar Sander</span>
+            <span>Auxerre, France</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button class="mini-cart" id="cart-fab" type="button" aria-label="Ouvrir le panier">
+      <div>
+        <strong data-cart-count>0</strong>
+        <span>articles dans le panier</span>
+      </div>
+      <div>
+        <strong data-cart-total>0,00 EUR</strong>
+        <span>ouvrir le panier</span>
+      </div>
+    </button>
+
+    <script src="shop-data.js?v=20260329-shop-6"></script>
+    <script src="store-kit.js?v=20260329-shop-6"></script>
+    <script src="shop-page.js?v=20260329-shop-6"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.11.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore-compat.js"></script>
+    <script>
+      (function () {
+        const FIREBASE_CONFIG = {
+          apiKey: "AIzaSyAW_bIrO8ZLKrjLReh97Cy27ffjp8dkv-A",
+          authDomain: "cookie-c728b.firebaseapp.com",
+          projectId: "cookie-c728b",
+          storageBucket: "cookie-c728b.firebasestorage.app",
+          messagingSenderId: "920152252978",
+          appId: "1:920152252978:web:3f85b75b1bea81f050922b",
+          measurementId: "G-VBJ5DJGGLL",
+        };
+
+        const TERMS_VERSION = "2026-03-28";
+        const TERMS_PENDING_STORAGE_KEY = "kultiv_terms_pending_v1";
+        const dataset = window.KULTIV_SHOP_DATA;
+        const store = window.KultivStoreKit;
+        const menuToggle = document.getElementById("menu-toggle");
+        const menuBackdrop = document.getElementById("menu-backdrop");
+        const sideMenu = document.getElementById("side-menu");
+        const sideClose = document.getElementById("side-close");
+        const cartFab = document.getElementById("cart-fab");
+        const cartBackdrop = document.getElementById("cart-backdrop");
+        const cartDrawer = document.getElementById("cart-drawer");
+        const cartClose = document.getElementById("cart-close");
+        const cartItems = document.getElementById("cart-items");
+        const cartSubtotal = document.getElementById("cart-subtotal");
+        const cartTotal = document.getElementById("cart-total");
+        const cartFeedback = document.getElementById("cart-feedback");
+        const cartCheckout = document.getElementById("cart-checkout");
+        const headerAuthButton = document.getElementById("header-auth-button");
+        const dialogBackdrop = document.getElementById("dialog-backdrop");
+        const authDialog = document.getElementById("auth-dialog");
+        const authForm = document.getElementById("auth-form");
+        const authEmail = document.getElementById("auth-email");
+        const authPassword = document.getElementById("auth-password");
+        const authSubmit = document.getElementById("auth-submit");
+        const authTitle = document.getElementById("auth-title");
+        const authCopy = document.getElementById("auth-copy");
+        const authSwitch = document.getElementById("auth-switch");
+        const authSwitchCopy = document.getElementById("auth-switch-copy");
+        const authTermsWrap = document.getElementById("auth-terms-wrap");
+        const authTermsCheckbox = document.getElementById("auth-terms-checkbox");
+        const authMessage = document.getElementById("auth-message");
+        const googleSigninButton = document.getElementById("google-signin");
+        const checkoutDialog = document.getElementById("checkout-dialog");
+        const checkoutForm = document.getElementById("checkout-form");
+        const checkoutAddress = document.getElementById("checkout-address");
+        const checkoutPostal = document.getElementById("checkout-postal");
+        const checkoutCity = document.getElementById("checkout-city");
+        const checkoutCountry = document.getElementById("checkout-country");
+        const checkoutMessage = document.getElementById("checkout-message");
+        const checkoutSubmit = document.getElementById("checkout-submit");
+        const checkoutLoadingDialog = document.getElementById("checkout-loading-dialog");
+        const checkoutLoadingCopy = document.getElementById("checkout-loading-copy");
+        const checkoutAmountDialog = document.getElementById("checkout-amount-dialog");
+        const checkoutAmountValue = document.getElementById("checkout-amount-value");
+        const checkoutCopyAmount = document.getElementById("checkout-copy-amount");
+        const checkoutPayNow = document.getElementById("checkout-pay-now");
+        let menuOpen = false;
+        let cartOpen = false;
+        let activeDialog = "";
+        let authMode = "signin";
+        let authUser = null;
+        let firebaseReady = false;
+        let firebaseAuth = null;
+        let firestore = null;
+        let googleProvider = null;
+        let pendingCheckoutTotal = 0;
+
+        if (window.firebase) {
+          try {
+            if (!firebase.apps.length) {
+              firebase.initializeApp(FIREBASE_CONFIG);
+            }
+            firebaseAuth = firebase.auth();
+            firestore = firebase.firestore();
+            googleProvider = new firebase.auth.GoogleAuthProvider();
+            googleProvider.setCustomParameters({ prompt: "select_account" });
+            firebaseReady = true;
+          } catch (error) {
+            console.error("Firebase init error", error);
+          }
+        }
+
+        function formatPrice(value) {
+          return dataset ? dataset.formatPrice(value) : `${Number(value || 0).toFixed(2)} EUR`;
+        }
+
+        function getCartImage(image) {
+          return `shopthumbs/${image}?v=20260329-shop-6`;
+        }
+
+        function getProviderLabel(user) {
+          const providers = (user?.providerData || []).map((entry) => entry?.providerId);
+          if (providers.includes("google.com")) {
+            return "Google";
+          }
+          if (providers.includes("password")) {
+            return "Email";
+          }
+          return "Compte";
+        }
+
+        function getUserLabel(user) {
+          if (!user) {
+            return "Profil";
+          }
+          const displayName = typeof user.displayName === "string" ? user.displayName.trim() : "";
+          if (displayName) {
+            return displayName;
+          }
+          const email = typeof user.email === "string" ? user.email.trim() : "";
+          if (email) {
+            return email.split("@")[0];
+          }
+          return "Profil";
+        }
+
+        function getAuthErrorMessage(error) {
+          const code = error?.code || "";
+          if (code === "auth/invalid-credential" || code === "auth/wrong-password" || code === "auth/user-not-found") {
+            return "Identifiants invalides.";
+          }
+          if (code === "auth/email-already-in-use") {
+            return "Ce mail est déjà utilisé.";
+          }
+          if (code === "auth/weak-password") {
+            return "Mot de passe trop faible.";
+          }
+          if (code === "auth/invalid-email") {
+            return "Mail invalide.";
+          }
+          if (code === "auth/popup-closed-by-user") {
+            return "Connexion Google annulée.";
+          }
+          if (code === "auth/network-request-failed") {
+            return "Réseau indisponible.";
+          }
+          return error?.message || "Connexion impossible pour le moment.";
+        }
+
+        function setAuthMessage(message = "", tone = "") {
+          authMessage.textContent = message;
+          if (tone) {
+            authMessage.dataset.tone = tone;
+          } else {
+            delete authMessage.dataset.tone;
+          }
+        }
+
+        function setAuthMode(mode) {
+          authMode = mode === "signup" ? "signup" : "signin";
+          const signup = authMode === "signup";
+          authTitle.textContent = signup ? "Créer un compte" : "Connexion";
+          authCopy.textContent = signup
+            ? "Crée ton accès puis accepte les conditions générales avant la première commande."
+            : "Entre ton mail et ton mot de passe pour accéder à ton espace.";
+          authSubmit.textContent = signup ? "Créer le compte" : "Se connecter";
+          authSwitchCopy.textContent = signup ? "Vous avez déjà un compte ?" : "Vous n'avez pas de compte ?";
+          authSwitch.textContent = signup ? "Se connecter" : "Créer ici";
+          authPassword.autocomplete = signup ? "new-password" : "current-password";
+          authTermsWrap.hidden = !signup;
+          if (!signup) {
+            authTermsCheckbox.checked = false;
+          }
+          setAuthMessage("");
+        }
+
+        function renderAuthUi() {
+          if (!headerAuthButton) {
+            return;
+          }
+          headerAuthButton.textContent = authUser ? "Mon profil" : "Se connecter";
+        }
+
+        async function syncUserProfile(user) {
+          if (!firestore || !user) {
+            return;
+          }
+
+          await firestore
+            .collection("users")
+            .doc(user.uid)
+            .set(
+              {
+                uid: user.uid,
+                email: user.email || "",
+                displayName: user.displayName || "",
+                photoURL: user.photoURL || "",
+                provider: getProviderLabel(user),
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+              },
+              { merge: true }
+            );
+        }
+
+        function syncBodyLock() {
+          document.body.classList.toggle("has-layer", menuOpen || cartOpen || Boolean(activeDialog));
+        }
+
+        function closeMenu() {
+          menuOpen = false;
+          if (sideMenu) {
+            sideMenu.hidden = true;
+            sideMenu.setAttribute("aria-hidden", "true");
+          }
+          if (menuBackdrop) {
+            menuBackdrop.hidden = true;
+          }
+          syncBodyLock();
+        }
+
+        function openMenu() {
+          closeCart();
+          menuOpen = true;
+          if (sideMenu) {
+            sideMenu.hidden = false;
+            sideMenu.setAttribute("aria-hidden", "false");
+          }
+          if (menuBackdrop) {
+            menuBackdrop.hidden = false;
+          }
+          syncBodyLock();
+        }
+
+        function renderCartDrawer() {
+          if (!store || !cartItems) {
+            return;
+          }
+
+          const summary = store.getCartSummary();
+          store.renderBadges();
+
+          if (cartSubtotal) {
+            cartSubtotal.textContent = formatPrice(summary.total);
+          }
+          if (cartTotal) {
+            cartTotal.textContent = formatPrice(summary.total);
+          }
+
+          if (!summary.cart.length) {
+            cartItems.innerHTML = `
+              <div class="cart-empty">
+                <p>Le panier est vide pour le moment. Ajoute un produit depuis le catalogue.</p>
+                <a class="button" href="#graines">Voir le shop</a>
+              </div>
+            `;
+            if (cartCheckout) {
+              cartCheckout.disabled = true;
+            }
+            return;
+          }
+
+          if (cartCheckout) {
+            cartCheckout.disabled = false;
+          }
+
+          cartItems.innerHTML = summary.cart
+            .map(
+              (item) => `
+                <article class="cart-item">
+                  <div class="cart-item-thumb">
+                    <img src="${getCartImage(item.image)}" alt="${item.name}" loading="lazy" />
+                  </div>
+                  <div class="cart-item-copy">
+                    <strong>${item.name}</strong>
+                    <span>${item.optionLabel || "Format unique"}</span>
+                    <span>${formatPrice(item.unitPrice)} / unite</span>
+                  </div>
+                  <div class="cart-item-side">
+                    <strong>${formatPrice(item.totalPrice)}</strong>
+                    <div class="cart-qty">
+                      <button type="button" data-cart-dec="${item.key}">-</button>
+                      <span>${item.qty}</span>
+                      <button type="button" data-cart-inc="${item.key}">+</button>
+                    </div>
+                    <button class="cart-remove" type="button" data-cart-remove="${item.key}">Retirer</button>
+                  </div>
+                </article>
+              `
+            )
+            .join("");
+        }
+
+        function closeCart() {
+          cartOpen = false;
+          if (cartBackdrop) {
+            cartBackdrop.hidden = true;
+          }
+          if (cartDrawer) {
+            cartDrawer.hidden = true;
+            cartDrawer.setAttribute("aria-hidden", "true");
+          }
+          syncBodyLock();
+        }
+
+        function openCart() {
+          closeMenu();
+          cartOpen = true;
+          if (cartBackdrop) {
+            cartBackdrop.hidden = false;
+          }
+          if (cartDrawer) {
+            cartDrawer.hidden = false;
+            cartDrawer.setAttribute("aria-hidden", "false");
+          }
+          renderCartDrawer();
+          syncBodyLock();
+        }
+
+        function hydrateCheckoutForm() {
+          const info = store ? store.loadShippingInfo() : { address: "", postalCode: "", city: "", country: "" };
+          checkoutAddress.value = info.address || "";
+          checkoutPostal.value = info.postalCode || "";
+          checkoutCity.value = info.city || "";
+          checkoutCountry.value = info.country || "";
+          checkoutMessage.textContent = "";
+          delete checkoutMessage.dataset.tone;
+        }
+
+        function openDialog(name) {
+          closeMenu();
+          closeCart();
+          activeDialog = name;
+          dialogBackdrop.hidden = false;
+          authDialog.hidden = name !== "auth";
+          checkoutDialog.hidden = name !== "checkout";
+          checkoutLoadingDialog.hidden = name !== "checkout-loading";
+          checkoutAmountDialog.hidden = name !== "checkout-amount";
+          syncBodyLock();
+        }
+
+        function closeDialog() {
+          activeDialog = "";
+          dialogBackdrop.hidden = true;
+          authDialog.hidden = true;
+          checkoutDialog.hidden = true;
+          checkoutLoadingDialog.hidden = true;
+          checkoutAmountDialog.hidden = true;
+          syncBodyLock();
+        }
+
+        function openCheckoutDialog() {
+          if (!store || !store.getCartSummary().cart.length) {
+            cartFeedback.textContent = "Ajoute d'abord un produit au panier.";
+            return;
+          }
+
+          if (!authUser) {
+            setAuthMode("signin");
+            setAuthMessage("Connecte-toi avant de payer.", "error");
+            openDialog("auth");
+            return;
+          }
+
+          hydrateCheckoutForm();
+          openDialog("checkout");
+        }
+
+        async function saveOrderToFirebase(shippingInfo, totalAmount) {
+          if (!firestore || !firebaseReady || !authUser) {
+            throw new Error("Connexion Firebase indisponible.");
+          }
+
+          const orderPayload = {
+            userId: authUser.uid,
+            userEmail: authUser.email || "",
+            userName: getUserLabel(authUser),
+            items: store.getCartSummary().cart.map((item) => ({
+              key: item.key,
+              productId: item.productId,
+              name: item.name,
+              optionLabel: item.optionLabel || "",
+              qty: item.qty,
+              unitPrice: item.unitPrice,
+              totalPrice: item.totalPrice,
+              image: item.image,
+            })),
+            subtotal: totalAmount,
+            discountAmount: 0,
+            discountPercent: 0,
+            promoCode: "",
+            amount: totalAmount,
+            currency: "EUR",
+            shippingInfo,
+            status: "pending_payment",
+            paymentLink: dataset.checkoutUrl,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          };
+
+          await firestore.collection("orders").add(orderPayload);
+          await firestore
+            .collection("users")
+            .doc(authUser.uid)
+            .set(
+              {
+                shippingInfo,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+              },
+              { merge: true }
+            );
+        }
+
+        async function handleCheckoutSubmit(event) {
+          event.preventDefault();
+
+          const summary = store.getCartSummary();
+          if (!summary.cart.length) {
+            checkoutMessage.textContent = "Le panier est vide.";
+            checkoutMessage.dataset.tone = "error";
+            return;
+          }
+
+          if (!authUser) {
+            setAuthMode("signin");
+            setAuthMessage("Connecte-toi avant de payer.", "error");
+            openDialog("auth");
+            return;
+          }
+
+          const shippingInfo = {
+            address: checkoutAddress.value.trim(),
+            postalCode: checkoutPostal.value.trim(),
+            city: checkoutCity.value.trim(),
+            country: checkoutCountry.value.trim(),
+          };
+
+          if (!shippingInfo.address || !shippingInfo.postalCode || !shippingInfo.city || !shippingInfo.country) {
+            checkoutMessage.textContent = "Complete l'adresse, le code postal, la ville et le pays.";
+            checkoutMessage.dataset.tone = "error";
+            return;
+          }
+
+          checkoutSubmit.disabled = true;
+          openDialog("checkout-loading");
+          checkoutLoadingCopy.textContent = "Preparation du paiement…";
+
+          try {
+            store.saveShippingInfo(shippingInfo);
+            await saveOrderToFirebase(shippingInfo, summary.total);
+            pendingCheckoutTotal = summary.total;
+            checkoutAmountValue.textContent = formatPrice(summary.total);
+            openDialog("checkout-amount");
+          } catch (error) {
+            checkoutMessage.textContent = error instanceof Error ? error.message : "Paiement impossible pour le moment.";
+            checkoutMessage.dataset.tone = "error";
+            openDialog("checkout");
+          } finally {
+            checkoutSubmit.disabled = false;
+          }
+        }
+
+        async function copyCheckoutAmount() {
+          const amount = formatPrice(pendingCheckoutTotal);
+          try {
+            await navigator.clipboard.writeText(amount);
+            checkoutCopyAmount.textContent = "Copie";
+            window.setTimeout(() => {
+              checkoutCopyAmount.textContent = "Copier";
+            }, 1600);
+          } catch {
+            checkoutCopyAmount.textContent = amount;
+            window.setTimeout(() => {
+              checkoutCopyAmount.textContent = "Copier";
+            }, 1800);
+          }
+        }
+
+        function launchCheckoutPayment() {
+          openDialog("checkout-loading");
+          checkoutLoadingCopy.textContent = "Ouverture de Revolut…";
+          store.clearCart();
+          window.setTimeout(() => {
+            window.location.href = dataset.checkoutUrl;
+          }, 900);
+        }
+
+        async function handleAuthSubmit(event) {
+          event.preventDefault();
+
+          if (!firebaseAuth || !firebaseReady) {
+            setAuthMessage("Firebase n'est pas disponible sur cette page.", "error");
+            return;
+          }
+
+          const email = authEmail.value.trim();
+          const password = authPassword.value.trim();
+
+          if (!email || !password) {
+            setAuthMessage("Entre un mail et un mot de passe.", "error");
+            return;
+          }
+
+          if (authMode === "signup" && !authTermsCheckbox.checked) {
+            setAuthMessage("Tu dois accepter les conditions générales.", "error");
+            return;
+          }
+
+          authSubmit.disabled = true;
+          authSubmit.textContent = authMode === "signup" ? "Création..." : "Connexion...";
+          setAuthMessage("");
+
+          try {
+            if (authMode === "signup") {
+              const credential = await firebaseAuth.createUserWithEmailAndPassword(email, password);
+              if (firestore && credential?.user) {
+                await firestore
+                  .collection("users")
+                  .doc(credential.user.uid)
+                  .set(
+                    {
+                      termsAccepted: true,
+                      termsAcceptedVersion: TERMS_VERSION,
+                      termsAcceptedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    },
+                    { merge: true }
+                  );
+              }
+              setAuthMessage("Compte créé.", "success");
+            } else {
+              await firebaseAuth.signInWithEmailAndPassword(email, password);
+            }
+            authPassword.value = "";
+          } catch (error) {
+            setAuthMessage(getAuthErrorMessage(error), "error");
+          } finally {
+            authSubmit.disabled = false;
+            authSubmit.textContent = authMode === "signup" ? "Créer le compte" : "Se connecter";
+          }
+        }
+
+        async function handleGoogleSignin() {
+          if (!firebaseAuth || !googleProvider) {
+            setAuthMessage("Connexion Google indisponible.", "error");
+            return;
+          }
+
+          if (authMode === "signup" && !authTermsCheckbox.checked) {
+            setAuthMessage("Accepte d'abord les conditions générales.", "error");
+            return;
+          }
+
+          googleSigninButton.disabled = true;
+          setAuthMessage("");
+          const googleSignupWithTerms = authMode === "signup" && authTermsCheckbox.checked;
+
+          try {
+            if (googleSignupWithTerms) {
+              sessionStorage.setItem(TERMS_PENDING_STORAGE_KEY, TERMS_VERSION);
+            }
+            const credential = await firebaseAuth.signInWithPopup(googleProvider);
+            if (googleSignupWithTerms && credential?.additionalUserInfo?.isNewUser && firestore && credential.user) {
+              await firestore
+                .collection("users")
+                .doc(credential.user.uid)
+                .set(
+                  {
+                    termsAccepted: true,
+                    termsAcceptedVersion: TERMS_VERSION,
+                    termsAcceptedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                  },
+                  { merge: true }
+                );
+              sessionStorage.removeItem(TERMS_PENDING_STORAGE_KEY);
+            }
+          } catch (error) {
+            if (error?.code === "auth/popup-blocked") {
+              if (googleSignupWithTerms) {
+                sessionStorage.setItem(TERMS_PENDING_STORAGE_KEY, TERMS_VERSION);
+              }
+              await firebaseAuth.signInWithRedirect(googleProvider);
+              return;
+            }
+            sessionStorage.removeItem(TERMS_PENDING_STORAGE_KEY);
+            setAuthMessage(getAuthErrorMessage(error), "error");
+          } finally {
+            googleSigninButton.disabled = false;
+          }
+        }
+
+        function startAuthObserver() {
+          renderAuthUi();
+          setAuthMode("signin");
+
+          if (window.location.protocol === "file:") {
+            setAuthMessage("Ouvre cette page via localhost ou un vrai domaine pour activer Firebase.", "error");
+          }
+
+          if (!firebaseAuth || !firebaseReady) {
+            return;
+          }
+
+          firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+          firebaseAuth.onAuthStateChanged(async (user) => {
+            authUser = user;
+            renderAuthUi();
+
+            if (!user) {
+              return;
+            }
+
+            try {
+              await syncUserProfile(user);
+              if (sessionStorage.getItem(TERMS_PENDING_STORAGE_KEY) === TERMS_VERSION && firestore) {
+                await firestore
+                  .collection("users")
+                  .doc(user.uid)
+                  .set(
+                    {
+                      termsAccepted: true,
+                      termsAcceptedVersion: TERMS_VERSION,
+                      termsAcceptedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    },
+                    { merge: true }
+                  );
+                sessionStorage.removeItem(TERMS_PENDING_STORAGE_KEY);
+              }
+            } catch (error) {
+              console.error("Profile sync error", error);
+            }
+
+            if (activeDialog === "auth") {
+              closeDialog();
+            }
+          });
+        }
+
+        menuToggle?.addEventListener("click", openMenu);
+        sideClose?.addEventListener("click", closeMenu);
+        menuBackdrop?.addEventListener("click", closeMenu);
+
+        document.querySelectorAll("[data-menu-link]").forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+
+        cartFab?.addEventListener("click", openCart);
+        cartClose?.addEventListener("click", closeCart);
+        cartBackdrop?.addEventListener("click", closeCart);
+        cartCheckout?.addEventListener("click", openCheckoutDialog);
+        headerAuthButton?.addEventListener("click", () => {
+          setAuthMode("signin");
+          openDialog("auth");
+        });
+        dialogBackdrop?.addEventListener("click", closeDialog);
+        authSwitch?.addEventListener("click", () => {
+          setAuthMode(authMode === "signup" ? "signin" : "signup");
+        });
+        authForm?.addEventListener("submit", handleAuthSubmit);
+        googleSigninButton?.addEventListener("click", handleGoogleSignin);
+        checkoutForm?.addEventListener("submit", handleCheckoutSubmit);
+        checkoutCopyAmount?.addEventListener("click", copyCheckoutAmount);
+        checkoutPayNow?.addEventListener("click", launchCheckoutPayment);
+
+        document.addEventListener("click", (event) => {
+          const closeTarget = event.target.closest("[data-close-dialog]");
+          if (closeTarget) {
+            closeDialog();
+            return;
+          }
+
+          if (!store) {
+            return;
+          }
+
+          const incButton = event.target.closest("[data-cart-inc]");
+          if (incButton) {
+            const key = incButton.getAttribute("data-cart-inc");
+            const item = store.getCartSummary().cart.find((entry) => entry.key === key);
+            if (item) {
+              store.setQty(key, item.qty + 1);
+            }
+            return;
+          }
+
+          const decButton = event.target.closest("[data-cart-dec]");
+          if (decButton) {
+            const key = decButton.getAttribute("data-cart-dec");
+            const item = store.getCartSummary().cart.find((entry) => entry.key === key);
+            if (item) {
+              if (item.qty <= 1) {
+                store.removeFromCart(key);
+              } else {
+                store.setQty(key, item.qty - 1);
+              }
+            }
+            return;
+          }
+
+          const removeButton = event.target.closest("[data-cart-remove]");
+          if (removeButton) {
+            store.removeFromCart(removeButton.getAttribute("data-cart-remove"));
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            if (activeDialog) {
+              closeDialog();
+              return;
+            }
+            closeMenu();
+            closeCart();
+          }
+        });
+
+        window.addEventListener("kultiv-cart-change", () => {
+          renderCartDrawer();
+          if (cartFeedback && cartFeedback.textContent) {
+            window.clearTimeout(window.__kultivShopFeedbackTimer || 0);
+            window.__kultivShopFeedbackTimer = window.setTimeout(() => {
+              cartFeedback.textContent = "";
+            }, 1800);
+          }
+        });
+
+        renderCartDrawer();
+        startAuthObserver();
+      })();
+    </script>
+  </body>
+</html>
