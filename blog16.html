@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pourquoi les feuilles de cannabis jaunissent | Guide Expert</title>
+    <meta name="description" content="Découvrez les véritables causes du jaunissement des feuilles de cannabis : carences, sur-arrosage, pH. Apprenez à poser le bon diagnostic pour sauver votre culture.">
+    
+    <style>
+        :root {
+            --black: #050505;
+            --white: #FAFAFA;
+            --font-serif: "Playfair Display", "Georgia", serif;
+            --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin: 4rem 0 1.5rem;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: #222;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* Header */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .logo-link {
+            display: block;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            filter: grayscale(100%) contrast(120%);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--black);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Article Layout */
+        .article-container {
+            max-width: 800px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            display: block;
+            color: #666;
+        }
+
+        .article-intro {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            font-family: var(--font-serif);
+            font-style: italic;
+            margin-bottom: 4rem;
+            color: #333;
+        }
+
+        /* Images */
+        .article-image-wrapper {
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(100%) contrast(110%);
+            transition: filter 0.5s ease;
+        }
+
+        .article-image:hover {
+            filter: grayscale(100%) contrast(120%) brightness(0.95);
+        }
+
+        .image-caption {
+            font-size: 0.8rem;
+            text-align: right;
+            margin-top: 0.5rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Blockquote */
+        blockquote {
+            margin: 4rem 0;
+            padding: 2rem 3rem;
+            border-left: 2px solid var(--black);
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 900px;
+            margin: 8rem auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .cta-box {
+            position: relative;
+            padding: 5rem 3rem;
+            text-align: center;
+            background-color: var(--white);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-box::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 2px solid var(--black);
+            border-radius: 2% 98% 3% 97% / 96% 3% 97% 4%;
+            z-index: -1;
+            transform: rotate(-0.5deg);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .cta-box::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 1px solid rgba(0,0,0,0.4);
+            border-radius: 98% 2% 97% 3% / 4% 97% 3% 96%;
+            z-index: -1;
+            transform: rotate(0.8deg);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .cta-box:hover::before {
+            transform: rotate(0deg) scale(1.01);
+            border-width: 3px;
+        }
+
+        .cta-box:hover::after {
+            transform: rotate(0deg) scale(0.99);
+        }
+
+        .cta-small-text {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            border: none;
+            padding: 0;
+        }
+
+        .cta-desc {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: #444;
+        }
+
+        .cta-arrow {
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+            overflow: visible;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .btn-shop {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            padding: 1.2rem 3.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            border: 1px solid var(--black);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-shop:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            .article-container {
+                margin: 3rem auto;
+            }
+            .cta-box {
+                padding: 3rem 1.5rem;
+            }
+            blockquote {
+                padding: 1.5rem;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="logo-link">
+            <img src="logopage.png" alt="Logo" class="logo-img">
+        </a>
+        <nav class="main-nav">
+            <a href="#" class="nav-link">Formation</a>
+            <a href="shop.html" class="nav-link">Shop</a>
+        </nav>
+    </header>
+
+    <main>
+        <article class="article-container">
+            <span class="article-meta">Série Expert — Diagnostic & Soins</span>
+            
+            <h1>Pourquoi les feuilles de cannabis jaunissent : Le diagnostic expert</h1>
+            
+            <p class="article-intro">
+                Voir ses feuilles de cannabis virer au jaune est l'angoisse numéro un de tout cultivateur. Pourtant, la chlorose n'est pas une fatalité : c'est un langage. Votre plante essaie de communiquer un déséquilibre précis. Avant de paniquer et de vider vos bouteilles d'engrais, il est crucial d'apprendre à lire ces signaux. Décryptage des causes principales et de leurs solutions.
+            </p>
+
+            <div class="article-image-wrapper">
+                <img src="gelato.png" alt="Culture de cannabis saine avec un feuillage parfait" class="article-image">
+                <div class="image-caption">Un feuillage vert et dense est le reflet d'un environnement parfaitement maîtrisé.</div>
+            </div>
+
+            <h2>1. La carence en azote : Le grand classique</h2>
+            <p>
+                C'est la cause la plus fréquente, surtout en phase de croissance végétative. L'azote est un nutriment <strong>mobile</strong>. Lorsque la plante en manque pour développer ses nouvelles pousses, elle va littéralement pomper l'azote des vieilles feuilles situées en bas de la canopée.
+            </p>
+            <p>
+                <strong>Le diagnostic :</strong> Le jaunissement commence par les feuilles les plus basses et les plus anciennes. Elles pâlissent, jaunissent uniformément, puis finissent par tomber d'elles-mêmes. Le haut de la plante reste vert.
+            </p>
+            <p>
+                <strong>La solution :</strong> Augmentez progressivement votre apport en engrais de croissance (Grow). Attention cependant à ne pas surdoser : un excès d'azote en floraison bloquera le développement des têtes.
+            </p>
+
+            <div class="article-image-wrapper">
+                <img src="haze.png" alt="Détail d'une feuille de cannabis" class="article-image">
+            </div>
+
+            <h2>2. Le sur-arrosage : L'erreur silencieuse</h2>
+            <p>
+                Les cultivateurs débutants ont tendance à trop aimer leurs plantes. Un substrat constamment détrempé empêche les racines de respirer. Sans oxygène, les racines suffoquent, pourrissent, et ne peuvent plus assimiler les nutriments, même s'ils sont présents en abondance.
+            </p>
+            <p>
+                <strong>Le diagnostic :</strong> Les feuilles jaunissent, mais contrairement à une carence, elles sont lourdes, tombantes et gonflées d'eau. La plante entière semble fatiguée et affaissée.
+            </p>
+            <p>
+                <strong>La solution :</strong> Laissez sécher votre substrat. Soulevez vos pots : s'ils sont lourds, n'arrosez pas. Attendez que les premiers centimètres de terre soient secs avant le prochain arrosage.
+            </p>
+
+            <blockquote>
+                "Une plante de cannabis se remettra toujours plus vite d'un sous-arrosage sévère que d'un sur-arrosage chronique. L'oxygène racinaire n'est pas une option."
+            </blockquote>
+
+            <div class="article-image-wrapper">
+                <img src="purple.png" alt="Génétique de cannabis aux teintes sombres" class="article-image">
+            </div>
+
+            <h2>3. Le blocage des nutriments (Fluctuations du pH)</h2>
+            <p>
+                Vous donnez les bons engrais, mais vos feuilles jaunissent quand même ? Le coupable est souvent le pH. Si le pH de votre eau ou de votre substrat est hors de la plage idéale, les racines subissent un "lockout" : les nutriments se lient chimiquement et deviennent indisponibles pour la plante.
+            </p>
+            <p>
+                <strong>Le diagnostic :</strong> Le jaunissement est souvent irrégulier, accompagné de taches, de brûlures sur les bords ou de décolorations étranges. Plusieurs carences semblent apparaître en même temps.
+            </p>
+            <p>
+                <strong>La solution :</strong> Calibrez votre testeur pH. En terre, maintenez l'eau d'arrosage entre 6.0 et 6.5. En hydroponie ou coco, visez entre 5.5 et 6.0. Si le substrat est trop acide ou basique, un rinçage (flush) à l'eau claire au bon pH peut réinitialiser la zone racinaire.
+            </p>
+
+            <div class="article-image-wrapper">
+                <img src="diesel.png" alt="Fleur de cannabis dense et résineuse" class="article-image">
+                <div class="image-caption">La perfection florale exige une nutrition sans aucun blocage.</div>
+            </div>
+
+            <h2>4. Le stress lumineux et thermique</h2>
+            <p>
+                Les lampes LED modernes sont extrêmement puissantes. Placée trop près de la canopée, la lumière peut littéralement décolorer la chlorophylle, un phénomène appelé "light burn".
+            </p>
+            <p>
+                <strong>Le diagnostic :</strong> Contrairement à la carence en azote, le jaunissement frappe uniquement les feuilles les plus hautes, celles directement exposées à la lumière. Les feuilles peuvent devenir presque blanches, tandis que les nervures restent parfois vertes. Les bords se recroquevillent souvent vers le haut (en forme de canoë) pour tenter de dissiper la chaleur.
+            </p>
+            <p>
+                <strong>La solution :</strong> Remontez vos lampes ou diminuez leur intensité (dimmer). Assurez-vous également que la température au niveau de la canopée ne dépasse pas 28°C.
+            </p>
+
+            <div class="article-image-wrapper">
+                <img src="cake.png" alt="Détail d'une fleur de cannabis saine" class="article-image">
+            </div>
+
+            <p>
+                Le jaunissement des feuilles n'est jamais un hasard. Prenez le temps d'observer l'emplacement des feuilles touchées (haut ou bas), leur texture (sèche ou gonflée) et vérifiez toujours vos paramètres de base (pH, arrosage, distance lumineuse) avant d'ajouter des engrais. Un bon cultivateur est avant tout un bon observateur.
+            </p>
+        </article>
+
+        <!-- CTA Final -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <span class="cta-small-text">Vous voulez aller plus loin ?</span>
+                <h2 class="cta-title">Passez de la lecture à l’action.</h2>
+                <p class="cta-desc">Découvrez notre sélection pensée pour les cultivateurs qui veulent de meilleurs résultats, un meilleur contrôle, et une culture plus propre.</p>
+                
+                <svg class="cta-arrow" viewBox="0 0 100 100" width="60" height="60">
+                    <path d="M50 10 Q45 40 50 75 M35 60 Q50 85 50 80 Q50 85 65 60" fill="none" stroke="var(--black)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <a href="shop.html" class="btn-shop">Découvrir le shop</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        © 2026 — Série Expert. Tous droits réservés.
+    </footer>
+
+</body>
+</html>
