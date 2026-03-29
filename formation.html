@@ -369,14 +369,14 @@
           <div class="formation-hero-card">
             <small>Formation</small>
             <h1>Les articles Kultiv</h1>
-            <p>Retrouve ici les 12 articles déjà publiés, des bases aux gestes plus techniques, dans un espace simple et clair.</p>
+            <p id="formation-hero-copy">Retrouve ici les articles déjà publiés, des bases aux gestes plus techniques, dans un espace simple et clair.</p>
           </div>
         </div>
       </section>
 
       <section class="formation-list">
         <div class="shell">
-          <div class="formation-grid">
+          <div class="formation-grid" id="formation-grid">
             <a class="formation-card" href="blog1.html">
               <div class="formation-card-top">
                 <span class="formation-card-tag">Blog 01</span>
@@ -678,6 +678,9 @@
       const sideClose = document.getElementById("side-close");
       const headerAuthButton = document.getElementById("header-auth-button");
       const menuLinks = Array.from(document.querySelectorAll(".side-menu a"));
+      const formationGrid = document.getElementById("formation-grid");
+      const formationHeroCopy = document.getElementById("formation-hero-copy");
+      const BLOGS_REPO_CONTENTS_URL = "https://api.github.com/repos/cloviskill/web/contents/?ref=main";
       let menuOpen = false;
 
       function syncMenuLock() {
@@ -722,11 +725,175 @@
         });
       }
 
+      function escapeHtml(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function getBlogNumber(filename) {
+        const match = String(filename || "").match(/blog(\d+)\.html/i);
+        return match ? Number(match[1]) : 0;
+      }
+
+      function formatBlogIndex(number) {
+        return String(number).padStart(2, "0");
+      }
+
+      function cleanBlogTitle(value, fallback) {
+        const raw = String(value || "").trim();
+        if (!raw) {
+          return fallback;
+        }
+        return raw
+          .replace(/\s*\|\s*Le Sobeuhlier\s*$/i, "")
+          .replace(/\s*\|\s*Kultiv\s*$/i, "")
+          .trim();
+      }
+
+      function parseBlogMeta(html, fallbackTitle, fallbackDescription) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const title =
+          cleanBlogTitle(
+            doc.querySelector("h1")?.textContent ||
+              doc.querySelector('meta[property="og:title"]')?.getAttribute("content") ||
+              doc.querySelector("title")?.textContent,
+            fallbackTitle
+          ) || fallbackTitle;
+        const description =
+          doc.querySelector('meta[name="description"]')?.getAttribute("content")?.trim() ||
+          doc.querySelector("main p")?.textContent?.trim() ||
+          doc.querySelector("p")?.textContent?.trim() ||
+          fallbackDescription;
+
+        return {
+          title,
+          description,
+        };
+      }
+
+      async function fetchBlogMeta(entry) {
+        const number = getBlogNumber(entry.name);
+        const fallbackTitle = `Blog ${formatBlogIndex(number)}`;
+        const fallbackDescription = "Nouvel article disponible.";
+        const sources = [
+          new URL(entry.name, window.location.href).href,
+          entry.download_url || "",
+        ].filter(Boolean);
+
+        for (const source of sources) {
+          try {
+            const response = await fetch(source, { cache: "no-store" });
+            if (!response.ok) {
+              continue;
+            }
+            const html = await response.text();
+            return parseBlogMeta(html, fallbackTitle, fallbackDescription);
+          } catch {}
+        }
+
+        return {
+          title: fallbackTitle,
+          description: fallbackDescription,
+        };
+      }
+
+      function renderFormationCards(cards) {
+        if (!formationGrid || !Array.isArray(cards) || !cards.length) {
+          return;
+        }
+
+        formationGrid.innerHTML = cards
+          .map((card) => {
+            const index = formatBlogIndex(card.number);
+            return `
+              <a class="formation-card" href="${escapeHtml(card.href)}">
+                <div class="formation-card-top">
+                  <span class="formation-card-tag">Blog ${index}</span>
+                  <span class="formation-card-index">${index}</span>
+                </div>
+
+                <div class="formation-card-copy">
+                  <h2>${escapeHtml(card.title)}</h2>
+                  <p>${escapeHtml(card.description)}</p>
+                </div>
+
+                <div class="formation-card-foot">
+                  <span class="formation-card-link">Lire l’article</span>
+                  <span class="formation-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            `;
+          })
+          .join("");
+      }
+
+      async function loadRemoteBlogs() {
+        if (!formationGrid) {
+          return;
+        }
+
+        try {
+          const response = await fetch(BLOGS_REPO_CONTENTS_URL, {
+            headers: {
+              Accept: "application/vnd.github+json",
+            },
+            cache: "no-store",
+          });
+
+          if (!response.ok) {
+            throw new Error(`GitHub ${response.status}`);
+          }
+
+          const entries = await response.json();
+          const blogEntries = Array.isArray(entries)
+            ? entries
+                .filter((entry) => entry?.type === "file" && /^blog\d+\.html$/i.test(entry.name || ""))
+                .sort((left, right) => getBlogNumber(left.name) - getBlogNumber(right.name))
+            : [];
+
+          if (!blogEntries.length) {
+            return;
+          }
+
+          const cards = await Promise.all(
+            blogEntries.map(async (entry) => {
+              const number = getBlogNumber(entry.name);
+              const meta = await fetchBlogMeta(entry);
+              return {
+                number,
+                href: entry.name,
+                title: meta.title,
+                description: meta.description,
+              };
+            })
+          );
+
+          renderFormationCards(cards);
+
+          if (formationHeroCopy) {
+            formationHeroCopy.textContent = `Retrouve ici les ${cards.length} articles disponibles, directement détectés depuis le repo GitHub.`;
+          }
+        } catch (error) {
+          console.error("Blog listing error", error);
+        }
+      }
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && menuOpen) {
           closeMenu();
         }
       });
+
+      loadRemoteBlogs();
     </script>
   </body>
 </html>
