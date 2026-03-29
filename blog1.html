@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choisir Sa LED Sans Surconsommer | Kultiv</title>
+    <meta
+      name="description"
+      content="Comprendre puissance, surface, heures d'allumage et consommation pour choisir une lampe LED de culture proprement."
+    />
+    <meta name="theme-color" content="#111317" />
+    <link rel="icon" href="logo.png" />
+    <style>
+      :root {
+        --bg: #f6f5f2;
+        --panel: #ffffff;
+        --text: #111317;
+        --muted: #69717b;
+        --line: rgba(17, 19, 23, 0.08);
+        --shadow: 0 28px 70px rgba(17, 19, 23, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top, rgba(17, 19, 23, 0.04), transparent 26%),
+          linear-gradient(180deg, #ffffff, var(--bg));
+        color: var(--text);
+        font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1100px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      .page-top {
+        padding: 18px 0 0;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        min-height: 62px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .brand img {
+        width: clamp(100px, 11vw, 150px);
+        height: auto;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .button,
+      .button-ghost {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+        border-radius: 999px;
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      .button {
+        background: #111317;
+        color: #ffffff;
+        box-shadow: 0 18px 40px rgba(17, 19, 23, 0.14);
+      }
+
+      .button-ghost {
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid var(--line);
+      }
+
+      .hero {
+        padding: 18px 0 26px;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+        gap: 22px;
+        padding: 24px;
+        border-radius: 36px;
+        background: #111317;
+        color: #ffffff;
+        box-shadow: 0 28px 66px rgba(17, 19, 23, 0.14);
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: auto -100px -120px auto;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 72%);
+      }
+
+      .hero-copy,
+      .hero-aside {
+        position: relative;
+        z-index: 1;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 10ch;
+        margin: 16px 0 12px;
+        font-size: clamp(2.6rem, 6vw, 5.4rem);
+        line-height: 0.9;
+        letter-spacing: -0.09em;
+      }
+
+      .hero-copy p {
+        max-width: 34rem;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.74);
+        line-height: 1.72;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .hero-tags span {
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .hero-aside {
+        display: grid;
+        gap: 12px;
+        align-content: end;
+      }
+
+      .aside-card {
+        padding: 18px;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .aside-card strong,
+      .aside-card span {
+        display: block;
+      }
+
+      .aside-card strong {
+        font-size: 1.6rem;
+        letter-spacing: -0.06em;
+      }
+
+      .aside-card span {
+        margin-top: 6px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.58;
+      }
+
+      .article-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 20px;
+        padding-bottom: 48px;
+      }
+
+      .shop-cta-section {
+        padding: 0 0 64px;
+      }
+
+      .shop-cta-card {
+        display: grid;
+        place-items: center;
+      }
+
+      .shop-cta-button {
+        min-height: 76px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 42px;
+        border-radius: 999px;
+        background: #111317;
+        color: #ffffff;
+        box-shadow: 0 26px 60px rgba(17, 19, 23, 0.16);
+        font-size: clamp(1.1rem, 2.2vw, 1.34rem);
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .article-body {
+        display: grid;
+        gap: 18px;
+      }
+
+      .panel {
+        padding: 22px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .panel h2 {
+        margin: 0 0 14px;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.07em;
+      }
+
+      .panel p {
+        margin: 0;
+        color: var(--text);
+        line-height: 1.78;
+      }
+
+      .panel p + p {
+        margin-top: 12px;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 10px;
+      }
+
+      .check {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        align-items: start;
+        padding: 12px 0;
+        border-top: 1px solid rgba(17, 19, 23, 0.08);
+      }
+
+      .check:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .dot {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #111317;
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .check strong,
+      .check span {
+        display: block;
+      }
+
+      .check strong {
+        font-size: 0.94rem;
+        letter-spacing: -0.03em;
+      }
+
+      .check span {
+        margin-top: 4px;
+        color: var(--muted);
+        line-height: 1.62;
+      }
+
+      .aside-stack {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+        position: sticky;
+        top: 90px;
+      }
+
+      .aside-panel {
+        padding: 18px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .aside-panel h3 {
+        margin: 0 0 12px;
+        font-size: 1.3rem;
+        letter-spacing: -0.05em;
+      }
+
+      .aside-panel p,
+      .aside-panel li {
+        color: var(--muted);
+        line-height: 1.68;
+      }
+
+      .aside-panel ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      @media (max-width: 900px) {
+        .hero-card,
+        .article-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .aside-stack {
+          position: static;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shop-cta-section {
+          padding-bottom: 52px;
+        }
+
+        .shop-cta-button {
+          min-height: 68px;
+          width: 100%;
+          max-width: 360px;
+          padding: 0 24px;
+          font-size: 1.04rem;
+          letter-spacing: 0.18em;
+        }
+
+        .shell {
+          width: calc(100% - 22px);
+        }
+
+        .topbar {
+          flex-wrap: wrap;
+        }
+
+        .hero-card,
+        .panel {
+          padding: 18px;
+          border-radius: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="page-top">
+      <div class="shell topbar">
+        <a class="brand" href="index3.html" aria-label="Retour a l'accueil">
+          <img src="logopage.png" alt="Kultiv" />
+        </a>
+        <div class="top-actions">
+          <a class="button-ghost" href="index3.html">Accueil</a>
+          <a class="button" href="shop.html">Shop</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell">
+          <div class="hero-card">
+            <div class="hero-copy">
+              <span class="eyebrow">Blog 01</span>
+              <h1>Choisir sa LED sans surconsommer.</h1>
+              <p>Avant de regarder seulement le chiffre en watts, il faut lier la lampe a la surface, au nombre d'heures allumees et au niveau de controle voulu. C’est ce trio qui fait la vraie difference entre une installation propre et une facture qui explose.</p>
+              <div class="hero-tags">
+                <span>LED</span>
+                <span>Conso</span>
+                <span>Surface</span>
+                <span>Routine</span>
+              </div>
+            </div>
+
+            <div class="hero-aside">
+              <div class="aside-card">
+                <strong>300W</strong>
+                <span>Une puissance deja tres correcte pour une petite surface si le reste est coherent.</span>
+              </div>
+              <div class="aside-card">
+                <strong>18 h / jour</strong>
+                <span>Le temps d'allumage change souvent plus la facture que la lampe elle-meme.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell article-shell">
+          <div class="article-body">
+            <article class="panel">
+              <h2>Commencer par la surface.</h2>
+              <p>La premiere erreur, c'est de choisir la lampe comme un objet isole. Une LED doit etre pensee avec la taille reelle de l'espace, la hauteur disponible, l'extraction et le niveau de chaleur acceptable. Une 300W bien adaptee peut etre plus propre qu'une puissance trop haute dans une petite tente.</p>
+              <p>La bonne question n'est pas seulement “combien de watts ?” mais “combien de watts pour quelle surface, avec quel rythme, et pour quel objectif ?”. Quand cette logique est claire, on evite les achats mal calibres.</p>
+            </article>
+
+            <article class="panel">
+              <h2>Regarder le cout journalier.</h2>
+              <p>Une lampe de culture travaille longtemps. Le bon reflexe est donc de calculer son cout sur une journee complete, puis sur un mois. C’est exactement ce que notre calculateur permet de faire rapidement.</p>
+              <div class="checklist">
+                <div class="check">
+                  <span class="dot">1</span>
+                  <div>
+                    <strong>Puissance reelle</strong>
+                    <span>Entre une fiche produit marketing et une conso reelle, il faut rester rigoureux.</span>
+                  </div>
+                </div>
+                <div class="check">
+                  <span class="dot">2</span>
+                  <div>
+                    <strong>Heures d'allumage</strong>
+                    <span>Une difference de quelques heures par jour change tres vite le cout mensuel.</span>
+                  </div>
+                </div>
+                <div class="check">
+                  <span class="dot">3</span>
+                  <div>
+                    <strong>Prix du kWh</strong>
+                    <span>Il varie selon la zone et le contrat, donc il faut toujours utiliser sa vraie base.</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <h2>Penser l'ensemble, pas juste la lampe.</h2>
+              <p>Une installation propre, c'est une addition de petits choix intelligents. Une LED, un extracteur, un ventilateur, parfois une pompe ou un tapis. Pris separement, chaque appareil semble raisonnable. Ensemble, ils dessinent la facture finale.</p>
+              <p>Le meilleur achat n'est pas celui qui impressionne le plus au premier regard. C'est celui qui s'integre dans une installation stable, lisible et soutenable sur la duree.</p>
+            </article>
+          </div>
+
+          <aside class="aside-stack">
+            <div class="aside-panel">
+              <h3>En bref</h3>
+              <p>Choisir proprement une LED, c'est relier puissance, surface et temps d'allumage. Pas seulement comparer un chiffre.</p>
+            </div>
+
+            <div class="aside-panel">
+              <h3>A retenir</h3>
+              <ul>
+                <li>Commencer par la surface reelle</li>
+                <li>Calculer le cout sur 30 jours</li>
+                <li>Ajouter extraction et ventilation au calcul</li>
+              </ul>
+            </div>
+
+            <div class="aside-panel">
+              <h3>Suite logique</h3>
+              <p>Tu peux maintenant retourner sur le site pour tester le calculateur de conso ou voir les fiches lampe.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="shop-cta-section">
+        <div class="shell">
+          <div class="shop-cta-card">
+            <a class="shop-cta-button" href="shop.html">Shop</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

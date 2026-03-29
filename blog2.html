@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Construire Une Routine Qui Tient Dans Le Temps | Kultiv</title>
+    <meta
+      name="description"
+      content="Mettre en place une routine simple pour suivre les sessions, les leçons et la consommation sans se disperser."
+    />
+    <meta name="theme-color" content="#111317" />
+    <link rel="icon" href="logo.png" />
+    <style>
+      :root {
+        --bg: #f4f4f1;
+        --panel: #ffffff;
+        --text: #111317;
+        --muted: #69717b;
+        --line: rgba(17, 19, 23, 0.08);
+        --shadow: 0 28px 70px rgba(17, 19, 23, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(17, 19, 23, 0.05), transparent 24%),
+          linear-gradient(180deg, #ffffff, var(--bg));
+        color: var(--text);
+        font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1100px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        min-height: 72px;
+        padding-top: 18px;
+      }
+
+      .topbar img {
+        width: clamp(100px, 11vw, 150px);
+        height: auto;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .button,
+      .button-ghost {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+        border-radius: 999px;
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      .button {
+        background: #111317;
+        color: #ffffff;
+      }
+
+      .button-ghost {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--line);
+      }
+
+      .hero {
+        padding: 18px 0 28px;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        gap: 20px;
+        padding: 24px;
+        border-radius: 38px;
+        background: linear-gradient(135deg, #101215, #171b21 58%, #101215);
+        color: #ffffff;
+        box-shadow: 0 28px 66px rgba(17, 19, 23, 0.14);
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: auto auto -120px -80px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 72%);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 11ch;
+        margin: 16px 0 12px;
+        font-size: clamp(2.6rem, 6vw, 5.2rem);
+        line-height: 0.9;
+        letter-spacing: -0.09em;
+      }
+
+      .hero-card p {
+        max-width: 42rem;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.74);
+        line-height: 1.72;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .hero-mini {
+        padding: 16px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .hero-mini strong,
+      .hero-mini span {
+        display: block;
+      }
+
+      .hero-mini strong {
+        font-size: 1.15rem;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-mini span {
+        margin-top: 6px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.55;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 20px;
+        padding-bottom: 52px;
+      }
+
+      .shop-cta-section {
+        padding: 0 0 64px;
+      }
+
+      .shop-cta-card {
+        display: grid;
+        place-items: center;
+      }
+
+      .shop-cta-button {
+        min-height: 76px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 42px;
+        border-radius: 999px;
+        background: #111317;
+        color: #ffffff;
+        box-shadow: 0 26px 60px rgba(17, 19, 23, 0.16);
+        font-size: clamp(1.1rem, 2.2vw, 1.34rem);
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .stack,
+      .side {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+      }
+
+      .panel {
+        padding: 22px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .panel h2,
+      .panel h3 {
+        margin: 0 0 14px;
+        letter-spacing: -0.06em;
+      }
+
+      .panel h2 {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        line-height: 0.95;
+      }
+
+      .panel h3 {
+        font-size: 1.3rem;
+      }
+
+      .panel p,
+      .panel li {
+        line-height: 1.78;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .panel p + p {
+        margin-top: 12px;
+      }
+
+      .flow {
+        display: grid;
+        gap: 12px;
+      }
+
+      .flow-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        align-items: start;
+        padding: 12px 0;
+        border-top: 1px solid rgba(17, 19, 23, 0.08);
+      }
+
+      .flow-step:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .flow-index {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #111317;
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .flow-step strong,
+      .flow-step span {
+        display: block;
+      }
+
+      .flow-step strong {
+        font-size: 0.94rem;
+        letter-spacing: -0.03em;
+      }
+
+      .flow-step span {
+        margin-top: 4px;
+        color: var(--muted);
+        line-height: 1.66;
+      }
+
+      .side {
+        position: sticky;
+        top: 90px;
+      }
+
+      .side ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      @media (max-width: 900px) {
+        .content,
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .side {
+          position: static;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shop-cta-section {
+          padding-bottom: 52px;
+        }
+
+        .shop-cta-button {
+          min-height: 68px;
+          width: 100%;
+          max-width: 360px;
+          padding: 0 24px;
+          font-size: 1.04rem;
+          letter-spacing: 0.18em;
+        }
+
+        .shell {
+          width: calc(100% - 22px);
+        }
+
+        .topbar {
+          flex-wrap: wrap;
+        }
+
+        .hero-card,
+        .panel {
+          padding: 18px;
+          border-radius: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell topbar">
+      <a href="index3.html" aria-label="Retour a l'accueil">
+        <img src="logopage.png" alt="Kultiv" />
+      </a>
+      <div class="actions">
+        <a class="button-ghost" href="index3.html">Accueil</a>
+        <a class="button" href="shop.html">Shop</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell">
+          <div class="hero-card">
+            <span class="eyebrow">Blog 02</span>
+            <div>
+              <h1>Construire une routine qui tient dans le temps.</h1>
+              <p>Une culture suivie proprement ne demande pas forcement plus de temps. Elle demande surtout une structure lisible, quelques gestes reguliers et un endroit unique pour centraliser sessions, conso et progression.</p>
+            </div>
+
+            <div class="hero-grid">
+              <div class="hero-mini">
+                <strong>1 endroit</strong>
+                <span>Regrouper les infos evite de perdre le fil au bout de quelques semaines.</span>
+              </div>
+              <div class="hero-mini">
+                <strong>5 minutes</strong>
+                <span>Une petite routine quotidienne vaut mieux qu'une grosse session de rattrapage.</span>
+              </div>
+              <div class="hero-mini">
+                <strong>Vision calme</strong>
+                <span>Le bon systeme reduit la charge mentale plus qu'il ne rajoute des taches.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell content">
+          <div class="stack">
+            <article class="panel">
+              <h2>La routine doit etre plus legere que la charge mentale.</h2>
+              <p>Le vrai probleme d'un suivi mal pense, ce n'est pas qu'il soit long. C'est qu'il arrive au mauvais moment, avec trop de choses a retenir. On repousse, puis on rattrape, puis on finit par ne plus regarder.</p>
+              <p>Une bonne routine fait l'inverse. Elle demande peu, mais elle donne une vue claire. On sait ou en est la session, ce qui consomme, et ce qu'il faut regarder ensuite. C'est cette sensation de controle calme qui fait durer l'habitude.</p>
+            </article>
+
+            <article class="panel">
+              <h2>Une structure simple en quatre blocs.</h2>
+              <div class="flow">
+                <div class="flow-step">
+                  <span class="flow-index">1</span>
+                  <div>
+                    <strong>Session</strong>
+                    <span>Le point de depart. Nom, progression, horizon de recolte.</span>
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-index">2</span>
+                  <div>
+                    <strong>Conso</strong>
+                    <span>Ce qui tourne vraiment, pendant combien de temps, et pour quel cout.</span>
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-index">3</span>
+                  <div>
+                    <strong>Lecons</strong>
+                    <span>Une progression claire pour apprendre au bon moment, sans tout melanger.</span>
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-index">4</span>
+                  <div>
+                    <strong>Shop</strong>
+                    <span>Retrouver ce qu'il manque sans casser la logique du reste.</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <h2>Pourquoi cette logique fonctionne mieux.</h2>
+              <p>Quand la navigation reste constante, le cerveau n'a pas a redecider ou chercher. On ouvre, on voit, on agit. C'est exactement ce qui permet de revenir tous les jours sans fatigue inutile.</p>
+              <p>Au lieu d'empiler des notes, des captures et des rappels, on installe un parcours. Et a long terme, c'est ce parcours qui cree la regularite.</p>
+            </article>
+          </div>
+
+          <aside class="side">
+            <div class="panel">
+              <h3>Le point cle</h3>
+              <p>La meilleure routine n'est pas la plus complete. C'est celle qu'on garde encore envie d'utiliser au bout d'un mois.</p>
+            </div>
+
+            <div class="panel">
+              <h3>A garder</h3>
+              <ul>
+                <li>Une session claire</li>
+                <li>Une conso lisible</li>
+                <li>Des lecons dans le bon ordre</li>
+                <li>Un shop raccord au reste</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h3>Retour site</h3>
+              <p>Tu peux revenir sur l'accueil pour ouvrir l'app, lire les avis ou tester directement l'outil conso.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="shop-cta-section">
+        <div class="shell">
+          <div class="shop-cta-card">
+            <a class="shop-cta-button" href="shop.html">Shop</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
