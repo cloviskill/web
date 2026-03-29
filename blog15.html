@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture de Précision : Maîtriser le Terroir en Intérieur | Guide Expert</title>
+    <meta name="description" content="Découvrez comment recréer un terroir d'exception en culture intérieure. Maîtrisez les paramètres environnementaux pour des résultats professionnels.">
+    <link rel="stylesheet" href="blog-series.css">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --grey: #f4f4f4;
+            --border: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 5%;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo-container img {
+            height: 24px;
+            display: block;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--black);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-left: 40px;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+        }
+
+        .nav-shop {
+            background: var(--black);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Layout */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        .hero {
+            margin-bottom: 100px;
+            text-align: center;
+        }
+
+        .category-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.6;
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 90px);
+            line-height: 0.9;
+            letter-spacing: -3px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .intro-text {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .main-visual {
+            width: 100%;
+            height: 70vh;
+            object-fit: cover;
+            margin-bottom: 100px;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .main-visual:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Content Sections */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+            margin-bottom: 120px;
+        }
+
+        .text-block h2 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .text-block p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #444;
+        }
+
+        .side-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .full-width-quote {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 100px 0;
+            text-align: center;
+        }
+
+        .full-width-quote blockquote {
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 700;
+            line-height: 1.1;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        /* Analysis Grid */
+        .analysis-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 120px;
+        }
+
+        .analysis-card {
+            padding: 40px;
+            background: var(--grey);
+            border-radius: 0;
+        }
+
+        .analysis-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            margin-bottom: 20px;
+        }
+
+        .analysis-card h3 {
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .analysis-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* Art Hand-drawn CTA */
+        .cta-container {
+            margin: 150px 0 100px;
+            position: relative;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        /* SVG Border for Hand-drawn effect */
+        .cta-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--black);
+            stroke-width: 2;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-small {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            text-transform: uppercase;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .btn-shop-final {
+            display: inline-flex;
+            align-items: center;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            padding: 20px 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-shop-final:hover {
+            transform: scale(1.05);
+        }
+
+        .visual-arrow {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            animation: bounceRight 2s infinite;
+        }
+
+        @keyframes bounceRight {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(0) translateY(-50%);}
+            40% {transform: translateX(-10px) translateY(-50%);}
+            60% {transform: translateX(-5px) translateY(-50%);}
+        }
+
+        @media (max-width: 768px) {
+            .content-grid, .analysis-section {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            h1 { font-size: 50px; }
+            .cta-title { font-size: 32px; }
+            main { padding-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="logopage.png" alt="Logo">
+        </a>
+        <nav>
+            <a href="formation.html">Formation</a>
+            <a href="shop.html" class="nav-shop">Shop</a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <section class="hero">
+                <span class="category-tag">Ingénierie Horticole</span>
+                <h1>L'Art Subtil du Terroir de Précision.</h1>
+                <p class="intro-text">
+                    La culture intérieure n'est plus une simple question de survie végétale. C'est une quête de perfection où chaque photon, chaque molécule d'oxygène et chaque goutte de nutriments définit le profil terpénique final. Bienvenue dans l'ère de la haute culture.
+                </p>
+                <img src="haze.png" alt="Gros plan sur une variété Haze cristallisée" class="main-visual">
+            </section>
+
+            <section class="content-grid">
+                <div class="text-block">
+                    <h2>L'homéostasie comme Standard de Qualité.</h2>
+                    <p>Dans un environnement clos, l'équilibre est tout. Le cultivateur moderne ne cherche pas seulement à faire pousser, il cherche à stabiliser un micro-climat où le stress devient un outil de pilotage plutôt qu'une fatalité subie.</p>
+                    <p>L'utilisation de variétés complexes comme la <strong>Purple</strong> demande une gestion fine de la température nocturne pour exprimer ses pigments sans sacrifier la densité florale. C'est ici que la science rencontre l'esthétique pure.</p>
+                </div>
+                <img src="purple.png" alt="Inflorescence Purple aux teintes profondes" class="side-image">
+            </section>
+
+            <div class="full-width-quote">
+                <blockquote>"La puissance sans contrôle n'est qu'un gaspillage de ressources."</blockquote>
+            </div>
+
+            <section class="content-grid">
+                <img src="diesel.png" alt="Structure robuste d'une plante Diesel" class="side-image">
+                <div class="text-block">
+                    <h2>La Génétique : Fondement du Résultat.</h2>
+                    <p>Sélectionner une génétique comme la <strong>Diesel</strong> n'est pas un choix anodin. C'est s'engager sur une structure exigeante, une consommation d'azote spécifique et un besoin de ventilation accru pour supporter ses arômes lourds et persistants.</p>
+                    <p>Pour obtenir un rendu premium, le substrat doit être vivant. L'apport organique permet une libération lente des nutriments, évitant les chocs de salinité qui ternissent souvent la réputation des cultures hydroponiques intensives.</p>
+                </div>
+            </section>
+
+            <section class="analysis-section">
+                <div class="analysis-card">
+                    <img src="gelato.png" alt="Texture onctueuse d'une fleur Gelato">
+                    <h3>Texture & Résine</h3>
+                    <p>L'aspect visuel "givré" de la Gelato est le résultat direct d'un spectre lumineux riche en UV-B lors des deux dernières semaines de floraison.</p>
+                </div>
+                <div class="analysis-card">
+                    <img src="cake.png" alt="Densité exceptionnelle d'une variété Cake">
+                    <h3>Densité Florale</h3>
+                    <p>Le contrôle de l'EC (Électro-Conductivité) permet de saturer les cellules sans brûler les pointes, garantissant une fleur compacte et pesante.</p>
+                </div>
+                <div class="analysis-card">
+                    <img src="haze.png" alt="Analyse de la structure Haze">
+                    <h3>Odorat & Terpènes</h3>
+                    <p>Une température de séchage n'excédant jamais 18°C préserve les huiles volatiles qui font la différence entre un produit moyen et une pièce de collection.</p>
+                </div>
+            </section>
+
+            <!-- CTA SECTION WITH HAND-DRAWN BORDER EFFECT -->
+            <section class="cta-container">
+                <!-- SVG Border to mimic hand-drawn style -->
+                <svg class="cta-border" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M2,5 Q5,2 10,3 T20,4 T35,2 T50,5 T70,3 T85,5 T98,2 T96,15 T99,35 T97,55 T99,75 T97,95 T85,97 T65,99 T45,97 T25,99 T5,96 T2,85 T4,65 T2,45 T4,25 T2,5" />
+                </svg>
+                
+                <div class="cta-content">
+                    <span class="cta-small">Vous voulez aller plus loin ?</span>
+                    <h2 class="cta-title">Passez de la lecture à l’action.</h2>
+                    <p class="cta-text">Découvrez notre sélection pensée pour les cultivateurs qui veulent de meilleurs résultats, un meilleur contrôle, et une culture plus propre.</p>
+                    
+                    <a href="shop.html" class="btn-shop-final">
+                        Découvrir le shop
+                        <svg class="visual-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer style="padding: 60px 5%; text-align: center; border-top: 1px solid var(--border); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5;">
+        &copy; 2024 Horticulture de Précision. Tous droits réservés.
+    </footer>
+
+</body>
+</html>
