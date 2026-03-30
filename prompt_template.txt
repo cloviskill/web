@@ -1,0 +1,45 @@
+Crée un fichier HTML complet nommé exactement blogXX.html.
+
+Objectif :
+Créer une page de blog premium, moderne, noire et blanche, très lisible, élégante, éditoriale, avec une vraie sensation de qualité haut de gamme. Le rendu doit sembler conçu par un très bon designer, sans effet cheap, sans template banal, sans style générique.
+
+Structure obligatoire :
+- un vrai <title> clair, naturel et optimisé SEO
+- un <meta name="description"> entre 120 et 160 caractères
+- un vrai <h1> fort, clair et précis
+- un premier paragraphe d’introduction crédible, agréable à lire et immédiatement utile
+- plusieurs sections avec des <h2> logiques
+- un header simple contenant un logo en haut à gauche, un lien Formation et un lien Shop
+- un gros bouton SHOP en bas de page
+- le logo du header doit utiliser logopage.png et renvoyer vers index3.html
+- le lien Shop et tous les CTA shop doivent renvoyer vers shop.html
+- le fichier doit utiliser blog-series.css
+
+Important :
+- le <h1> doit être suffisamment bon pour servir de titre de carte blog
+- le <meta name="description"> doit être suffisamment bon pour servir de texte court de carte blog
+- le premier paragraphe doit aussi pouvoir servir de résumé propre si besoin
+- la page doit être responsive
+- le code doit être propre, lisible, léger et prêt à publier
+- aucune dépendance externe inutile
+
+SEO :
+- HTML sémantique propre avec header, main, article, section, footer
+- intégrer naturellement le mot-clé principal dans le <title>, le <h1>, l’introduction, au moins un <h2> et la conclusion
+- article utile, crédible, fluide, dense, agréable à lire
+- éviter le bourrage de mots-clés, les phrases creuses, le lorem ipsum et le texte générique
+- très bonne lisibilité
+- vraie intention de recherche respectée
+- ton expert, clair, premium et crédible
+
+CTA final :
+Créer en bas de page un bloc visuellement fort avec un style premium et artistique, contenant :
+- petit texte : Vous voulez aller plus loin ?
+- titre : Passez de la lecture à l’action.
+- texte : Découvrez notre sélection pensée pour les cultivateurs qui veulent de meilleurs résultats, un meilleur contrôle, et une culture plus propre.
+- bouton : Découvrir le shop
+
+Le bloc CTA du bas ne doit pas ressembler à une simple carte SaaS classique : je veux un contour irrégulier, vivant, légèrement dessiné à la main, avec une flèche visuelle élégante qui guide l’œil vers le bouton, et une animation subtile, moderne, non gadget.
+
+Sujet du blog :
+[REMPLACER ICI PAR LE SUJET]
