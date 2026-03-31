@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feuilles qui tombent : diagnostic rapide des causes possibles</title>
+    <meta name="description" content="Feuilles qui tombent : diagnostic rapide des causes possibles : guide simple pour comprendre l&#x27;essentiel, éviter les erreurs courantes et mieux structurer son approche.">
+    <link rel="stylesheet" href="blog-series.css">
+    <style id="generator-overrides">
+:root{
+  --bg:#f5f3eb;
+  --surface:rgba(255,255,255,0.92);
+  --surface-strong:#ffffff;
+  --text:#111111;
+  --muted:#5b5b54;
+  --line:rgba(17,17,17,0.10);
+  --shadow:0 18px 48px rgba(17,17,17,0.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top, #ffffff 0%, #f7f4ed 56%, #f2eee4 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;
+  line-height:1.75;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,0));
+}
+.site-header,
+header{
+  max-width:1180px;
+  margin:0 auto;
+  padding:24px 24px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.logo,
+header .logo{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+}
+.site-logo,
+.logo img,
+header img[src*="logopage"]{
+  display:block;
+  width:auto !important;
+  height:44px !important;
+  max-width:180px !important;
+  object-fit:contain;
+}
+nav,
+header nav{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+nav a,
+header nav a{
+  text-decoration:none;
+  color:var(--text);
+  font-size:.95rem;
+  padding:9px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(6px);
+}
+nav a:hover,
+header nav a:hover{
+  background:#fff;
+}
+main{
+  max-width:1180px;
+  margin:0 auto;
+  padding:12px 24px 56px;
+}
+article,
+.article-shell{
+  max-width:860px;
+  margin:28px auto 0;
+  background:var(--surface);
+  border:1px solid rgba(17,17,17,.08);
+  border-radius:28px;
+  padding:40px 34px 34px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(8px);
+}
+.hero-kicker,
+.eyebrow{
+  display:inline-flex;
+  margin-bottom:14px;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#57574f;
+  padding:8px 12px;
+  border:1px solid rgba(17,17,17,.08);
+  border-radius:999px;
+  background:#faf8f2;
+}
+h1{
+  font-size:clamp(2rem, 4.8vw, 4rem);
+  line-height:1.02;
+  letter-spacing:-0.04em;
+  margin:0 0 18px;
+}
+h2{
+  font-size:clamp(1.2rem, 2.2vw, 1.7rem);
+  line-height:1.15;
+  letter-spacing:-0.03em;
+  margin:34px 0 12px;
+}
+h3{
+  font-size:1.05rem;
+  margin:22px 0 8px;
+}
+p, li{
+  font-size:1.05rem;
+  color:#1d1d1b;
+}
+p{
+  margin:0 0 18px;
+}
+ul, ol{
+  padding-left:1.25rem;
+  margin:0 0 18px;
+}
+img{
+  max-width:100%;
+  height:auto;
+  border-radius:18px;
+}
+blockquote{
+  margin:0 0 18px;
+  padding:18px 20px;
+  border-left:3px solid #111;
+  background:#faf8f2;
+  border-radius:18px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 18px;
+}
+th, td{
+  padding:12px 10px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+.cta-wrap{
+  margin-top:34px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+a.cta-button,
+.cta-wrap a,
+a[href="shop.html"].cta-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 22px;
+  border-radius:999px;
+  background:#111;
+  color:#fff !important;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.02em;
+  box-shadow:0 10px 30px rgba(17,17,17,.14);
+}
+a[href="shop.html"]:not(nav a):not(.logo){
+  font-weight:700;
+}
+@media (max-width: 720px){
+  .site-header,
+  header{
+    padding:18px 16px 6px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  nav,
+  header nav{
+    width:100%;
+  }
+  main{
+    padding:10px 16px 40px;
+  }
+  article,
+  .article-shell{
+    padding:28px 20px 24px;
+    border-radius:24px;
+    margin-top:18px;
+  }
+  .site-logo,
+  .logo img,
+  header img[src*="logopage"]{
+    height:38px !important;
+  }
+}
+</style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="logo" href="index.html">
+            <img src="logopage.png" alt="Le Sobeuhlier" class="site-logo">
+        </a>
+        <nav>
+            <a href="formation.html">Formation</a>
+            <a href="shop.html">Shop</a>
+        </nav>
+    </header>
+
+    <main>
+        <article class="article-shell">
+            <div class="hero-kicker">Guide</div>
+            <h1>Feuilles qui tombent : diagnostic rapide des causes possibles</h1>
+            <p>Quand Rempoter Et Quand Ne Rien Toucher | Kultiv</p>
+
+            <h2>Ce qu'il faut comprendre</h2>
+            <p>Le rempotage, c&#x27;est bien plus qu&#x27;un simple changement de pot. C&#x27;est une opération qui nécessite une analyse attentive de la plante. Trop tôt rempoter, c&#x27;est souvent une erreur. Le temps est crucial. Le bon moment est celui où la plante a besoin d&#x27;un nouvel espace pour respirer et se développer. Un rempotage trop rapide peut entraîner des problèmes de racines, de stress, et même de maladies. Il est essentiel de connaître le stade de croissance de votre plante pour déterminer le moment optimal. L&#x27;arrosage, le soleil, la qualité du substrat, la taille des racines... tous ces facteurs influencent la décision de rempoter. Un rempotage réussi est un processus réfléchi, qui se base sur une compréhension approfondie de la plante. Il est important de ne pas se précipiter. La patience est une vertu. La bonne pratique consiste à observer attentivement la plante, à évaluer son état général, et à choisir le moment où elle a le plus besoin d&#x27;un nouvel espace. Le rempotage est un moment de transformation, pas une simple opération. Il faut considérer le potentiel de croissance de la plante. Un rempotage bien fait permet de stimuler la croissance et de favoriser une meilleure floraison. Il faut aussi prendre en compte la qualité du substrat. Un substrat de qualité est essentiel pour une bonne croissance. Le rempotage est une occasion de renouveler le substrat. Il faut choisir un substrat adapté à la plante. Il faut aussi prendre en compte l&#x27;emplacement. Un emplacement bien choisi permet d&#x27;optimiser l&#x27;exposition au soleil et à l&#x27;eau. Le rempotage est un processus qui demande de la patience. Il faut observer attentivement la plante. Il faut évaluer son état général. Il faut choisir le moment optimal. Il faut prendre en compte le potentiel de croissance de la plante. Il faut considérer la qualité du substrat. Il faut aussi prendre en compte l&#x27;emplacement. Il faut aussi considérer l&#x27;arrosage. Il faut aussi considérer le soleil. Il faut aussi considérer l&#x27;eau. Il faut aussi considérer la qualité du substrat. Il faut aussi considérer la taille des racines. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer l&#x27;état général de la plante. Il faut aussi considérer la santé de la plante. Il faut aussi considérer la taille des racines. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer l&#x27;aspect général de la plante. Il faut aussi considérer l&#x27;état général de la plante. Il faut aussi considérer la santé de la plante. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer l&#x27;aspect général de la plante. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la texture des feuilles. Il faut aussi considérer la couleur des feuilles. Il faut aussi considérer la forme des feuilles. Il faut aussi considérer la taille des feuilles. Il faut aussi considérer</p>
+
+            <h2>Les points à retenir</h2>
+            <p>Un bon résultat vient rarement d'un effet spectaculaire. Il vient surtout d'une base propre, de choix cohérents et d'une exécution régulière.</p>
+
+            <div class="cta-wrap">
+                <a class="cta-button" href="shop.html">SHOP</a>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
